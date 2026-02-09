@@ -596,9 +596,9 @@ MIT License - See [LICENSE](LICENSE) file for details
 
 ## 📞 Support
 
-- **Issues:** [GitHub Issues](https://github.com/yourusername/tunnel/issues)
-- **Telegram:** @YourTelegramGroup
-- **Email:** support@yourdomain.com
+- **Issues:** [GitHub Issues](https://github.com/putrinuroktavia234-max/tunnel/issues)
+- **Telegram:** @ridhani16
+- **Email:** hudaacuan@gmail.com
 
 ---
 
@@ -612,16 +612,16 @@ This script is provided "as is" without warranty of any kind. Use at your own ri
 
 ## 🌟 Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=yourusername/tunnel&type=Date)](https://star-history.com/#yourusername/tunnel&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=putrinuroktavia234-max/tunnel&type=Date)](https://star-history.com/#putrinuroktavia234-max/tunnel&Date)
 
 ---
 
 ## 📈 Statistics
 
-![GitHub stars](https://img.shields.io/github/stars/yourusername/tunnel?style=social)
-![GitHub forks](https://img.shields.io/github/forks/yourusername/tunnel?style=social)
-![GitHub watchers](https://img.shields.io/github/watchers/yourusername/tunnel?style=social)
+![GitHub stars](https://img.shields.io/github/stars/putrinuroktavia234-max/tunnel?style=social)
+![GitHub forks](https://img.shields.io/github/forks/putrinuroktavia234-max/tunnel?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/putrinuroktavia234-max/tunnel?style=social)
 
 ---
 
-**Made with ❤️ by The Proffessor Squad**
+**By The Proffessor Squad**

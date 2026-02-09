@@ -67,14 +67,15 @@ Make sure these ports are open in your firewall:
 ### 1. One-Line Install Command
 
 ```bash
-wget -qO tunnel.sh https://raw.githubusercontent.com/yourusername/tunnel/main/tunnel.sh && chmod +x tunnel.sh && ./tunnel.sh
+wget -qO tunnel.sh https://raw.githubusercontent.com/putrinuroktavia234-max/TunnelingYouzinCrabz/main/tunnel.sh && chmod +x tunnel.sh && ./tunnel.sh
+
 ```
 
 ### 2. Step-by-Step Installation
 
 ```bash
 # Download script
-wget https://raw.githubusercontent.com/yourusername/tunnel/main/tunnel.sh
+wget https://raw.githubusercontent.com/putrinuroktavia234-max/TunnelingYouzinCrabz/main/tunnel.sh
 
 # Make executable
 chmod +x tunnel.sh

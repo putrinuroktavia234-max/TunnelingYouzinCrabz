@@ -1,0 +1,261 @@
+{
+  "log": {
+    "access": "/var/log/xray/access.log",
+    "error": "/var/log/xray/error.log",
+    "loglevel": "warning"
+  },
+  
+  "inbounds": [
+    
+    // ============================================
+    // VMess WS TLS - Internal Port 10001
+    // Public: Port 443, Path /vmess
+    // ============================================
+    {
+      "port": 10001,
+      "listen": "127.0.0.1",
+      "protocol": "vmess",
+      "settings": {
+        "clients": []
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/vmess"
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 30
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": ["http", "tls"]
+      },
+      "tag": "vmess-ws-tls"
+    },
+    
+    // ============================================
+    // VMess gRPC - Internal Port 10002
+    // Public: Port 443, ServiceName vmess-grpc
+    // ============================================
+    {
+      "port": 10002,
+      "listen": "127.0.0.1",
+      "protocol": "vmess",
+      "settings": {
+        "clients": []
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "grpcSettings": {
+          "serviceName": "vmess-grpc"
+        }
+      },
+      "tag": "vmess-grpc"
+    },
+    
+    // ============================================
+    // VLESS WS TLS - Internal Port 10003
+    // Public: Port 443, Path /vless
+    // ============================================
+    {
+      "port": 10003,
+      "listen": "127.0.0.1",
+      "protocol": "vless",
+      "settings": {
+        "clients": [],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/vless"
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 30
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": ["http", "tls"]
+      },
+      "tag": "vless-ws-tls"
+    },
+    
+    // ============================================
+    // VLESS gRPC - Internal Port 10004
+    // Public: Port 443, ServiceName vless-grpc
+    // ============================================
+    {
+      "port": 10004,
+      "listen": "127.0.0.1",
+      "protocol": "vless",
+      "settings": {
+        "clients": [],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "grpcSettings": {
+          "serviceName": "vless-grpc"
+        }
+      },
+      "tag": "vless-grpc"
+    },
+    
+    // ============================================
+    // Trojan WS - Internal Port 10005
+    // Public: Port 443, Path /trojan
+    // ============================================
+    {
+      "port": 10005,
+      "listen": "127.0.0.1",
+      "protocol": "trojan",
+      "settings": {
+        "clients": []
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/trojan"
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 30
+        }
+      },
+      "tag": "trojan-ws"
+    },
+    
+    // ============================================
+    // Trojan gRPC - Internal Port 10006
+    // Public: Port 443, ServiceName trojan-grpc
+    // ============================================
+    {
+      "port": 10006,
+      "listen": "127.0.0.1",
+      "protocol": "trojan",
+      "settings": {
+        "clients": []
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "grpcSettings": {
+          "serviceName": "trojan-grpc"
+        }
+      },
+      "tag": "trojan-grpc"
+    },
+    
+    // ============================================
+    // Shadowsocks WS - Internal Port 10007
+    // Public: Port 443, Path /shadowsocks
+    // ============================================
+    {
+      "port": 10007,
+      "listen": "127.0.0.1",
+      "protocol": "shadowsocks",
+      "settings": {
+        "method": "aes-256-gcm",
+        "password": "CHANGE_THIS_PASSWORD",
+        "network": "tcp,udp"
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/shadowsocks"
+        }
+      },
+      "tag": "shadowsocks-ws"
+    },
+    
+    // ============================================
+    // VMess Non-TLS - Internal Port 10011
+    // Public: Port 80, Path /vmess
+    // ============================================
+    {
+      "port": 10011,
+      "listen": "127.0.0.1",
+      "protocol": "vmess",
+      "settings": {
+        "clients": []
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/vmess"
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 30
+        }
+      },
+      "tag": "vmess-ws-nontls"
+    },
+    
+    // ============================================
+    // VLESS Non-TLS - Internal Port 10012
+    // Public: Port 80, Path /vless
+    // ============================================
+    {
+      "port": 10012,
+      "listen": "127.0.0.1",
+      "protocol": "vless",
+      "settings": {
+        "clients": [],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/vless"
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 30
+        }
+      },
+      "tag": "vless-ws-nontls"
+    }
+    
+  ],
+  
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "settings": {},
+      "tag": "direct"
+    },
+    {
+      "protocol": "blackhole",
+      "settings": {},
+      "tag": "block"
+    }
+  ],
+  
+  "policy": {
+    "levels": {
+      "0": {
+        "handshake": 4,
+        "connIdle": 300,
+        "uplinkOnly": 2,
+        "downlinkOnly": 5,
+        "statsUserUplink": true,
+        "statsUserDownlink": true,
+        "bufferSize": 10240
+      }
+    },
+    "system": {
+      "statsInboundUplink": true,
+      "statsInboundDownlink": true
+    }
+  },
+  
+  "routing": {
+    "domainStrategy": "AsIs",
+    "rules": [
+      {
+        "type": "field",
+        "ip": ["geoip:private"],
+        "outboundTag": "block"
+      }
+    ]
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "log": {
+    "access": "/var/log/xray/access.log",
+    "error": "/var/log/xray/error.log",
+    "loglevel": "warning"
+  },
+  "inbounds": [
+    
+    // ======================================
+    // VMESS - MULTI PORT + GRPC
+    // ======================================
+    
+    {"port": 443, "protocol": "vmess", "settings": {"clients": []}, "streamSettings": {"network": "ws", "security": "tls", "tlsSettings": {"certificates": [{"certificateFile": "/etc/xray/xray.crt", "keyFile": "/etc/xray/xray.key"}], "alpn": ["h2", "http/1.1"]}, "wsSettings": {"path": "/vmess"}, "sockopt": {"tcpKeepAliveInterval": 30}}, "sniffing": {"enabled": true, "destOverride": ["http", "tls"]}, "tag": "vmess-tls-443"},
+    
+    {"port": 80, "protocol": "vmess", "settings": {"clients": []}, "streamSettings": {"network": "ws", "wsSettings": {"path": "/vmess"}, "sockopt": {"tcpKeepAliveInterval": 30}}, "sniffing": {"enabled": true, "destOverride": ["http", "tls"]}, "tag": "vmess-nontls-80"},
+    
+    {"port": 8443, "protocol": "vmess", "settings": {"clients": []}, "streamSettings": {"network": "ws", "security": "tls", "tlsSettings": {"certificates": [{"certificateFile": "/etc/xray/xray.crt", "keyFile": "/etc/xray/xray.key"}]}, "wsSettings": {"path": "/vmess"}, "sockopt": {"tcpKeepAliveInterval": 30}}, "tag": "vmess-tls-8443"},
+    
+    {"port": 8080, "protocol": "vmess", "settings": {"clients": []}, "streamSettings": {"network": "ws", "wsSettings": {"path": "/vmess"}, "sockopt": {"tcpKeepAliveInterval": 30}}, "tag": "vmess-nontls-8080"},
+    
+    {"port": 8880, "protocol": "vmess", "settings": {"clients": []}, "streamSettings": {"network": "ws", "wsSettings": {"path": "/vmess"}}, "tag": "vmess-nontls-8880"},
+    
+    {"port": 2087, "protocol": "vmess", "settings": {"clients": []}, "streamSettings": {"network": "ws", "security": "tls", "tlsSettings": {"certificates": [{"certificateFile": "/etc/xray/xray.crt", "keyFile": "/etc/xray/xray.key"}]}, "wsSettings": {"path": "/vmess"}}, "tag": "vmess-tls-2087"},
+    
+    {"port": 2082, "protocol": "vmess", "settings": {"clients": []}, "streamSettings": {"network": "ws", "wsSettings": {"path": "/vmess"}}, "tag": "vmess-nontls-2082"},
+    
+    {"port": 2096, "protocol": "vmess", "settings": {"clients": []}, "streamSettings": {"network": "ws", "security": "tls", "tlsSettings": {"certificates": [{"certificateFile": "/etc/xray/xray.crt", "keyFile": "/etc/xray/xray.key"}]}, "wsSettings": {"path": "/vmess"}}, "tag": "vmess-tls-2096"},
+    
+    {"port": 10443, "listen": "0.0.0.0", "protocol": "vmess", "settings": {"clients": []}, "streamSettings": {"network": "grpc", "security": "tls", "tlsSettings": {"certificates": [{"certificateFile": "/etc/xray/xray.crt", "keyFile": "/etc/xray/xray.key"}]}, "grpcSettings": {"serviceName": "vmess-grpc", "multiMode": false}}, "tag": "vmess-grpc"},
+    
+    // ======================================
+    // VLESS - MULTI PORT + GRPC (SAMA DENGAN VMESS!)
+    // ======================================
+    
+    {"port": 8443, "listen": "127.0.0.1", "protocol": "vless", "settings": {"clients": [], "decryption": "none"}, "streamSettings": {"network": "ws", "security": "tls", "tlsSettings": {"certificates": [{"certificateFile": "/etc/xray/xray.crt", "keyFile": "/etc/xray/xray.key"}]}, "wsSettings": {"path": "/vless"}, "sockopt": {"tcpKeepAliveInterval": 30}}, "sniffing": {"enabled": true, "destOverride": ["http", "tls"]}, "tag": "vless-tls-8443"},
+    
+    {"port": 8080, "listen": "127.0.0.1", "protocol": "vless", "settings": {"clients": [], "decryption": "none"}, "streamSettings": {"network": "ws", "wsSettings": {"path": "/vless"}, "sockopt": {"tcpKeepAliveInterval": 30}}, "sniffing": {"enabled": true, "destOverride": ["http", "tls"]}, "tag": "vless-nontls-8080"},
+    
+    {"port": 443, "listen": "127.0.0.1", "protocol": "vless", "settings": {"clients": [], "decryption": "none"}, "streamSettings": {"network": "ws", "security": "tls", "tlsSettings": {"certificates": [{"certificateFile": "/etc/xray/xray.crt", "keyFile": "/etc/xray/xray.key"}]}, "wsSettings": {"path": "/vless"}, "sockopt": {"tcpKeepAliveInterval": 30}}, "sniffing": {"enabled": true, "destOverride": ["http", "tls"]}, "tag": "vless-tls-443"},
+    
+    {"port": 80, "listen": "127.0.0.1", "protocol": "vless", "settings": {"clients": [], "decryption": "none"}, "streamSettings": {"network": "ws", "wsSettings": {"path": "/vless"}, "sockopt": {"tcpKeepAliveInterval": 30}}, "tag": "vless-nontls-80"},
+    
+    {"port": 2087, "listen": "127.0.0.1", "protocol": "vless", "settings": {"clients": [], "decryption": "none"}, "streamSettings": {"network": "ws", "security": "tls", "tlsSettings": {"certificates": [{"certificateFile": "/etc/xray/xray.crt", "keyFile": "/etc/xray/xray.key"}]}, "wsSettings": {"path": "/vless"}}, "tag": "vless-tls-2087"},
+    
+    {"port": 2082, "listen": "127.0.0.1", "protocol": "vless", "settings": {"clients": [], "decryption": "none"}, "streamSettings": {"network": "ws", "wsSettings": {"path": "/vless"}}, "tag": "vless-nontls-2082"},
+    
+    {"port": 2096, "listen": "127.0.0.1", "protocol": "vless", "settings": {"clients": [], "decryption": "none"}, "streamSettings": {"network": "ws", "security": "tls", "tlsSettings": {"certificates": [{"certificateFile": "/etc/xray/xray.crt", "keyFile": "/etc/xray/xray.key"}]}, "wsSettings": {"path": "/vless"}}, "tag": "vless-tls-2096"},
+    
+    {"port": 10444, "listen": "0.0.0.0", "protocol": "vless", "settings": {"clients": [], "decryption": "none"}, "streamSettings": {"network": "grpc", "security": "tls", "tlsSettings": {"certificates": [{"certificateFile": "/etc/xray/xray.crt", "keyFile": "/etc/xray/xray.key"}]}, "grpcSettings": {"serviceName": "vless-grpc"}}, "tag": "vless-grpc"},
+    
+    // ======================================
+    // TROJAN - MULTI PORT + GRPC (SAMA DENGAN VMESS!)
+    // ======================================
+    
+    {"port": 10445, "listen": "0.0.0.0", "protocol": "trojan", "settings": {"clients": []}, "streamSettings": {"network": "tcp", "security": "tls", "tlsSettings": {"certificates": [{"certificateFile": "/etc/xray/xray.crt", "keyFile": "/etc/xray/xray.key"}]}, "sockopt": {"tcpKeepAliveInterval": 30}}, "tag": "trojan-tcp-10445"},
+    
+    {"port": 10446, "listen": "0.0.0.0", "protocol": "trojan", "settings": {"clients": []}, "streamSettings": {"network": "ws", "security": "tls", "tlsSettings": {"certificates": [{"certificateFile": "/etc/xray/xray.crt", "keyFile": "/etc/xray/xray.key"}]}, "wsSettings": {"path": "/trojan"}, "sockopt": {"tcpKeepAliveInterval": 30}}, "tag": "trojan-ws-tls-10446"},
+    
+    {"port": 10447, "listen": "0.0.0.0", "protocol": "trojan", "settings": {"clients": []}, "streamSettings": {"network": "ws", "wsSettings": {"path": "/trojan"}, "sockopt": {"tcpKeepAliveInterval": 30}}, "tag": "trojan-ws-nontls-10447"},
+    
+    {"port": 10448, "listen": "0.0.0.0", "protocol": "trojan", "settings": {"clients": []}, "streamSettings": {"network": "grpc", "security": "tls", "tlsSettings": {"certificates": [{"certificateFile": "/etc/xray/xray.crt", "keyFile": "/etc/xray/xray.key"}]}, "grpcSettings": {"serviceName": "trojan-grpc"}}, "tag": "trojan-grpc"}
+    
+  ],
+  "outbounds": [
+    {"protocol": "freedom", "settings": {}, "tag": "direct"},
+    {"protocol": "blackhole", "settings": {}, "tag": "block"}
+  ],
+  "policy": {
+    "levels": {
+      "0": {
+        "handshake": 4,
+        "connIdle": 300,
+        "uplinkOnly": 2,
+        "downlinkOnly": 5,
+        "statsUserUplink": true,
+        "statsUserDownlink": true,
+        "bufferSize": 10240
+      }
+    },
+    "system": {
+      "statsInboundUplink": true,
+      "statsInboundDownlink": true
+    }
+  },
+  "routing": {
+    "domainStrategy": "AsIs",
+    "rules": [
+      {
+        "type": "field",
+        "ip": ["geoip:private"],
+        "outboundTag": "block"
+      }
+    ]
+  }
+}
